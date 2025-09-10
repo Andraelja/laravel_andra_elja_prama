@@ -9,12 +9,9 @@
         <meta name="viewport"
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-        <title>Parktek Dokter Gigi Betri Sari</title>
+        <title>Tes Terakorp Rumah Sakit</title>
 
         <meta name="description" content="" />
-
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{{ url('assets-admin') }}/img/favicon/logo-baru.png" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -71,8 +68,8 @@
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     <div class="app-brand demo">
                         <a href="/" class="app-brand-link">
-                            <a href="/" class="app-brand-link gap-2">
-                                <img src="{{ url('assets-admin/img/betri-sari.png') }}" width="100%">
+                            <a href="/admin/home" class="app-brand-link gap-2">
+                                <h6>Tes Terakorp Rumah Sakit</h6>
                             </a>
                         </a>
 
@@ -84,327 +81,26 @@
                     <div class="menu-divider mt-0"></div>
 
                     <div class="menu-inner-shadow"></div>
-
-                    @if (Auth::user()->level == 1)
-                        <ul class="menu-inner py-1">
-                            <!-- Dashboards -->
-                            <li class="menu-item @if ($activePage == 'dashboard') active @endif">
-                                <a href="/admin/home" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-home-smile"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Dashboards</div>
-                                </a>
-                            </li>
-                            <!-- Data Master -->
-                            <li class="menu-item @if ($activePage == 'master') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-book-content"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Master</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'jenis') active @endif">
-                                        <a href="/admin/jenis" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Jenis Therapi</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'price') active @endif">
-                                        <a href="/admin/price" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without navbar">Price List</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'kategori') active @endif">
-                                        <a href="/admin/kategori" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Kategori Pengeluaran</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'metode_pembayaran') active @endif">
-                                        <a href="/admin/metode_pembayaran" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Metode Pembayaran</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            {{-- Data Account --}}
-                            <li class="menu-item @if ($activePage == 'account') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-user"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Account</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'dokter') active @endif">
-                                        <a href="/admin/dokter" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Dokter</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'resepsionis') active @endif">
-                                        <a href="/admin/resepsionis" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Resepsionis</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            {{-- Data Pengeluaran --}}
-                            <li class="menu-item @if ($activePage == 'accounting') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-coin-stack"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Accounting</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'pengeluaran') active @endif">
-                                        <a href="/admin/pengeluaran" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Data Pengeluaran</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'pasien') active @endif">
-                                <a href="/admin/pasien" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-card"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Data Pasien</div>
-                                </a>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'antrian') active @endif">
-                                <a href="/admin/antrian" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-group"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Data Antrian</div>
-                                </a>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'rekam_medis') active @endif">
-                                <a href="/admin/rekam_medis" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-heart-circle"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Data Rekam Medis</div>
-                                </a>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'surat') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-envelope"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Surat Menyurat</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'surat_sakit') active @endif">
-                                        <a href="/admin/surat/surat_sakit" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Surat Sakit</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'pengantar_rontgen') active @endif">
-                                        <a href="/admin/surat/pengantar_rontgen" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Surat Pengantar Rontgen</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    @elseif(Auth::user()->level == 2)
-                        <ul class="menu-inner py-1">
-                            <li class="menu-item @if ($activePage == 'dashboard') active @endif">
-                                <a href="/admin/home" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-home-smile"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Dashboards</div>
-                                </a>
-                            </li>
-                            <!-- Data Master -->
-                            <li class="menu-item @if ($activePage == 'master') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-book-content"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Master</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'jenis') active @endif">
-                                        <a href="/admin/jenis" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Jenis Therapi</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'price') active @endif">
-                                        <a href="/admin/price" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without navbar">Price List</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'kategori') active @endif">
-                                        <a href="/admin/kategori" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Kategori Pengeluaran</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'metode_pembayaran') active @endif">
-                                        <a href="/admin/metode_pembayaran" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Metode Pembayaran</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'account') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-user"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Account</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'dokter') active @endif">
-                                        <a href="/admin/dokter" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Dokter</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'resepsionis') active @endif">
-                                        <a href="/admin/resepsionis" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Resepsionis</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'antrian') active @endif">
-                                <a href="/admin/antrian" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-group"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Data Antrian</div>
-                                </a>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'pasien') active @endif">
-                                <a href="/admin/pasien" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-card"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Data Pasien</div>
-                                </a>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'surat') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-envelope"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Surat Menyurat</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'surat_sakit') active @endif">
-                                        <a href="/admin/surat/surat_sakit" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Surat Sakit</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'pengantar_rontgen') active @endif">
-                                        <a href="/admin/surat/pengantar_rontgen" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Surat Pengantar Rontgen</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'rekam_medis') active @endif">
-                                <a href="/admin/rekam_medis" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-heart-circle"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Data Rekam Medis</div>
-                                </a>
-                            </li>
-                        </ul>
-                    @elseif(Auth::user()->level == 3)
-                        <ul class="menu-inner py-1">
-                            <li class="menu-item @if ($activePage == 'dashboard') active @endif">
-                                <a href="/admin/home" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-home-smile"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Dashboards</div>
-                                </a>
-                            </li>
-                            <!-- Data Master -->
-                            <li class="menu-item @if ($activePage == 'master') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-book-content"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Master</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'jenis') active @endif">
-                                        <a href="/admin/jenis" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Jenis Therapi</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'price') active @endif">
-                                        <a href="/admin/price" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without navbar">Price List</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'kategori') active @endif">
-                                        <a href="/admin/kategori" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Kategori Pengeluaran</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'metode_pembayaran') active @endif">
-                                        <a href="/admin/metode_pembayaran" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Metode Pembayaran</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'account') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-user"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Account</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'dokter') active @endif">
-                                        <a href="/admin/dokter" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Dokter</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'resepsionis') active @endif">
-                                        <a href="/admin/resepsionis" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Resepsionis</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            {{-- Data Accounting --}}
-                            <li class="menu-item @if ($activePage == 'accounting') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-dollar"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Accounting</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'pengeluaran') active @endif">
-                                        <a href="/admin/pengeluaran" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Without menu">Data Pengeluaran</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'pasien') active @endif">
-                                <a href="/admin/pasien" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-card"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Data Pasien</div>
-                                </a>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'antrian') active @endif">
-                                <a href="/admin/antrian" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-group"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Data Antrian</div>
-                                </a>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'rekam_medis') active @endif">
-                                <a href="/admin/rekam_medis" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-heart-circle"></i>
-                                    <div class="text-truncate" data-i18n="Basic">Data Rekam Medis</div>
-                                </a>
-                            </li>
-                            <li class="menu-item @if ($activePage == 'surat') active open @endif">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-envelope"></i>
-                                    <div class="text-truncate" data-i18n="Layouts">Data Surat Menyurat</div>
-                                </a>
-
-                                <ul class="menu-sub">
-                                    <li class="menu-item @if ($subactivePage == 'surat_sakit') active @endif">
-                                        <a href="/admin/surat/surat_sakit" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Surat Sakit</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item @if ($subactivePage == 'pengantar_rontgen') active @endif">
-                                        <a href="/admin/surat/pengantar_rontgen" class="menu-link">
-                                            <div class="text-truncate" data-i18n="Fluid">Surat Pengantar Rontgen</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    @endif
+                    <ul class="menu-inner py-1">
+                        <li class="menu-item @if ($activePage == 'dashboard') active @endif">
+                            <a href="/admin/home" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-home-smile"></i>
+                                <div class="text-truncate" data-i18n="Basic">Dashboards</div>
+                            </a>
+                        </li>
+                        <li class="menu-item @if ($activePage == 'rumah_sakit') active @endif">
+                            <a href="/admin/rumah_sakit" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-home"></i>
+                                <div class="text-truncate" data-i18n="Basic">Data Rumah Sakit</div>
+                            </a>
+                        </li>
+                        <li class="menu-item @if ($activePage == 'pasien') active @endif">
+                            <a href="/admin/pasien" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-user"></i>
+                                <div class="text-truncate" data-i18n="Basic">Data Pasien</div>
+                            </a>
+                        </li>
+                    </ul>
                 </aside>
                 <!-- / Menu -->
 
@@ -442,43 +138,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="flex-grow-1">
-                                                        <h6 class="mb-0">{{ Auth::user()->username }}</h6>
-                                                        <small class="text-body-secondary">
-                                                            @if (Auth::user()->level == 1)
-                                                                Admin
-                                                            @elseif(Auth::user()->level == 2)
-                                                                Dokter
-                                                            @elseif(Auth::user()->level == 3)
-                                                                Resepsionis
-                                                            @else
-                                                                -
-                                                            @endif
-                                                        </small>
+                                                        <h6 class="mb-0">{{ Auth::user()->name }}</h6>
                                                     </div>
                                                 </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="dropdown-divider my-1"></div>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="icon-base bx bx-user icon-md me-3"></i><span>My Profile</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="icon-base bx bx-cog icon-md me-3"></i><span>Settings</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <span class="d-flex align-items-center align-middle">
-                                                    <i
-                                                        class="flex-shrink-0 icon-base bx bx-credit-card icon-md me-3"></i><span
-                                                        class="flex-grow-1 align-middle">Billing Plan</span>
-                                                    <span class="flex-shrink-0 badge rounded-pill bg-danger">4</span>
-                                                </span>
                                             </a>
                                         </li>
                                         <li>

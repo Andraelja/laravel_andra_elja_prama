@@ -19,79 +19,10 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $pemasukan = DB::table('pembayaran')
-            ->join('antrian', 'pembayaran.id_antrian', '=', 'antrian.id')
-            ->sum('pembayaran.total');
-
-        $pengeluaran = DB::table('pengeluaran')->sum('pengeluaran.harga');
-
-        $tanggalFilter = $request->query('tanggal', null);
-
-        $tanggalMulai = Carbon::now()->startOfMonth();
-        $tanggalAkhir = Carbon::now();
-
-        // Buat label tanggal
-        $tanggalLabels = [];
-        $currentDate = $tanggalMulai->copy();
-        while ($currentDate <= $tanggalAkhir) {
-            $tanggalLabels[] = $currentDate->format('l, d-m-Y');
-            $currentDate->addDay();
-        }
-
-        $datasets = [];
-
-        $listAdmin = DB::table('antrian')
-            ->distinct()
-            ->get();
-
-        $colors = ['#3e95cd', '#8e5ea2', '#3cba9f', '#e8c3b9', '#c45850', '#ffa600', '#00bcd4', '#4caf50'];
-
-        $colorIndex = 0;
-        foreach ($listAdmin as $admin) {
-            $dataAntrian = DB::table('antrian')
-                ->select('tgl as tanggal', DB::raw('COUNT(*) as total'))
-                ->groupBy('tgl')
-                ->orderBy('tgl', 'ASC')
-                ->get();
-
-            // Buat dataset per tanggal
-            $datasetData = [];
-            $currentDate = $tanggalMulai->copy();
-            while ($currentDate <= $tanggalAkhir) {
-                $tanggal = $currentDate->format('l, d-m-Y');
-                $found = $dataAntrian->firstWhere('tanggal', $tanggal);
-
-                // Filter by tanggal if set
-                if ($tanggalFilter !== null) {
-                    $filterDate = Carbon::createFromFormat('Y-m-d', $tanggalFilter)->format('l, d-m-Y');
-                    if ($tanggal !== $filterDate) {
-                        $datasetData[] = 0;
-                        $currentDate->addDay();
-                        continue;
-                    }
-                }
-
-                $datasetData[] = $found ? (int) $found->total : 0;
-                $currentDate->addDay();
-            }
-
-            $datasets[] = [
-                'data' => $datasetData,
-                'borderColor' => $colors[$colorIndex % count($colors)],
-                'fill' => false
-            ];
-
-            $colorIndex++;
-        }
-        return view('admin.dashboard.index', [
-            'labels' => $tanggalLabels,
-            'datasets' => $datasets,
-            'tanggalFilter' => $tanggalFilter,
-            'pemasukan' => $pemasukan,
-            'pengeluaran' => $pengeluaran,
-        ]);
+        $user_login = Auth::user();
+        return view('admin.dashboard.index', ['user_login' => $user_login]);
     }
 
     public function change()

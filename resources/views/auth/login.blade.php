@@ -12,12 +12,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Betri Sari</title>
+    <title>Tes Terakorp Rumah Sakit</title>
 
     <meta name="description" content="" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{url('assets-admin')}}/img/favicon/logo-baru.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,7 +60,7 @@
               <!-- Logo -->
               <div class="app-brand justify-content-center">
                 <a href="/" class="app-brand-link gap-2">
-                  <img src="{{url('assets-admin/img/betri-sari.png')}}" width="100%">
+                  <h3>Tes Terakorp Rumah Sakit</h3>
                 </a>
               </div>
               <!-- /Logo -->
