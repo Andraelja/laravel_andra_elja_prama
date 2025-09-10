@@ -30,7 +30,7 @@ Route::get('/clear', function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 
